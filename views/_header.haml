@@ -1,0 +1,17 @@
+%h1 
+  %a{:href=>path_to_page(".")} Frypan
+  %span Twitter notifications that kick ass
+
+%ul.tabs.right
+  %li{:class=>'pp_not_logged_in'}
+    %a{:href=>path_to_page("get-started")} Sign-up
+  %li{:class=>'pp_not_logged_in'}
+    %a{:href=>path_to_page("login")} Login
+
+  %li{:class=>'pp_logged_in'} Hello, philoye
+  %li{:class=>'pp_logged_in'}
+    %a{:href=>path_to_page("account")} Account
+  %li{:class=>'pp_logged_in'}
+    %a{:href=>path_to_page("followers")} Followers
+  %li{:class=>'pp_logged_in'}
+    %a{:href=>path_to_page("logout")} Logout    

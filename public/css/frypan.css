@@ -1,0 +1,163 @@
+body {
+  background-color: #333;
+  color: #fff;
+  font-size: 12px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/*-------------------------------------------------------------- 
+  Layout
+  -------------------------------------------------------------- */
+  .container {
+    width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px;
+  }
+    .header {
+      color: #fff;
+      position: relative;
+    }
+    .content {
+      background-color: #fff;
+      color: #222;
+      padding: 15px;
+      overflow: hidden;
+      position: relative;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+    .footer {
+      position: relative;
+    }
+    
+    .short {
+      width: 500px;
+    }
+    
+/*-------------------------------------------------------------- 
+  Header/footer
+  -------------------------------------------------------------- */
+
+  .header {
+  }
+  .header h1 {
+    color: #fff;
+    font: bold 42px/64px inherit;
+    margin: 10px 0 0 0;
+  }
+  .header span {
+    display: inline-block;
+    font: bold 11px/14px inherit;
+    text-transform: uppercase;
+    width: 150px;
+  }
+  .header ul {
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+    font-size: 11px;
+  }
+    .header ul a {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+  .footer {
+    padding: 15px;
+  }
+    .footer .about {
+      width: 50%;
+    }
+
+  .one,.two,.three {
+    width: 250px;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden;
+  }
+    .three {
+      margin-right: 0;
+    }
+  
+/*-------------------------------------------------------------- 
+  Typography
+  -------------------------------------------------------------- */
+  
+  .content {
+    font-size: 16px;
+  }
+  
+  h2 {
+    font-size: 21px;
+    font-weight: normal;
+    margin-bottom: 1em;
+  }
+  h3 {
+    border-top: 2px solid #000;
+    font-weight: bold;
+    padding: 5px 0 10px 0;
+    margin-top: 1em;
+  }
+  h4 {
+    font-weight: bold;
+  }
+  
+  a {
+    color: #8F0000;
+    text-decoration: none;
+  }
+    .header a {
+      color: #ccc;
+      text-decoration: none;
+    }
+    .footer a {
+      color: #ccc;
+      text-decoration: underline;
+    }
+  a:hover {
+    text-decoration: underline;
+  }
+    .header a:hover, .footer a:hover {
+      color: #fff;
+    }
+
+  .big {
+    font-size: 14px
+  }
+
+/*-------------------------------------------------------------- 
+  Homepage
+  -------------------------------------------------------------- */
+
+  #value_prop {
+    overflow: hidden;
+  }
+  #value_prop h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+  #value_prop .left, #value_prop .right {
+    width: 350px;
+    float: left;
+    margin-right: 10px;
+  }
+    #value_prop .right {
+      text-align: left;
+      margin-right: 0;
+    }
+  #value_prop li {
+    margin-bottom: 5px;
+  }
+
+/*-------------------------------------------------------------- 
+  Form
+  -------------------------------------------------------------- */
+
+label {
+  display: inline-block;
+  font-weight: normal;
+  width: 100px;
+}

@@ -1,0 +1,29 @@
+%h2 Login to Frypan
+
+%form{:action => "/followers", :method => "get"}
+  %ul
+    %li
+      %label
+        Username
+      %input{:type => "text", :class=>"text"}
+    %li
+      %label
+        Password
+      %input{:type => "text", :class=>"text"}
+      %span
+        %a{:href=>"#"} Forget your password?
+    %li
+      %label
+      %input{:type => "submit", :value => "Login", :class => "button"}
+
+
+%form{:action => "/followers", :method => "get"}
+  %ul
+    %li
+      %label
+        OpenID
+      %input{:type => "text", :class=>"text"}
+    %li
+      %label
+      %input{:type => "submit", :value => "Sign in with OpenID", :class => "button"}
+

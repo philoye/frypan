@@ -1,0 +1,18 @@
+- @body_class = "followers"
+- @pp_initial_page_state = "logged_in"
+
+%ul.text.tabs
+  %li
+    %a{:href=>"#"} 
+      = @date-1
+  %li
+    %strong= @date
+  %li
+    %a{:href=>"#"}
+      = @date+1
+  
+%h2.rule-above
+  New followers on
+  = @date.strftime('%A, %d %B %Y')
+
+%img{:src => path_to_image("follower-report.png") }

@@ -1,0 +1,35 @@
+%h2 Sign-up for Frypan
+%p You're most of the way there @philoye. 
+
+%form{:action => "/thank-you", :method => "get"}
+  %ul
+    %li
+      %h3
+        Where should we send your frypan emails?
+    
+    %li
+      %label Email
+      %input{:type => "text", :class => "text"}
+      %span We won't sell it, promise. But we need it.
+
+    %li
+      %h3
+        How do you want to login to Frypan?
+      
+    %li
+      %label Password
+      %input{:type => "password", :class => "text"}
+
+    %li
+      %span.quiet — or — 
+
+      
+    %li
+      %label Open ID
+      %input{:type => "text", :class => "text"}
+      %span 
+        %a{:href=>"http://openid.net/what/"} What is this?
+
+    %li
+      %label
+      %input{:type => "submit", :value => "Finish", :class => "button"}

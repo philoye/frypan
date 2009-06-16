@@ -1,0 +1,42 @@
+- @body_class = "account"
+- @pp_initial_page_state = "logged_in"
+
+%h2 Manage your account
+
+%form{:action => "/thank-you", :method => "get"}
+  %ul
+    %li
+      %h3
+        Where should we send your notifications?
+
+    %li
+      %label Email
+      %input{:type => "text", :class => "text", :value=>"philoye@philoye.com"}
+      %span We won't sell it, promise.
+
+    %li
+      %h3
+        Change your password
+
+    %li
+      %label Password
+      %input{:type => "password", :class => "text"}
+
+    %li
+      %label Again
+      %input{:type => "password", :class => "text"}
+      %span Enter it twice to be sure.
+
+    %li
+      %h3
+        Wearing fancy pants? Try OpenID
+
+    %li
+      %label Open ID
+      %input{:type => "text", :class => "text"}
+      %span 
+        %a{:href=>"http://openid.net/what/"} What is this?
+
+    %li
+      %label
+      %input{:type => "submit", :value => "Update", :class => "button"}
