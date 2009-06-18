@@ -1,0 +1,7 @@
+Enable OAuth testing:
+
+Add frypan.local to /etc/hosts by adding the following line:
+127.0.0.1 frypan.local
+
+Serve app on port 3000 and view at frypan.local:3000
+

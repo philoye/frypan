@@ -1,6 +1,7 @@
 gem 'sinatra', '>=0.10.1'
 require 'sinatra'
 require 'haml'
+require 'twitter'
 
 module Projectname
   class Application < Sinatra::Application
