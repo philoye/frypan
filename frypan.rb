@@ -1,13 +1,10 @@
-require 'sinatra/base'
+gem 'sinatra', '>=0.10.1'
+require 'sinatra'
 require 'haml'
-require 'sinatra/content_for'
 
 module Projectname
-  class Application < Sinatra::Base
+  class Application < Sinatra::Application
 
-    set :static, true
-    set :public, File.join(File.expand_path(File.dirname(__FILE__)),'public')
-    set :views, File.join(File.expand_path(File.dirname(__FILE__)),'views')
     set :site_root, '/'
     set :haml, {:format => :html4}  # default Haml format is :xhtml
 
