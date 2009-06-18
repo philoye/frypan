@@ -1,10 +1,13 @@
 gem 'sinatra', '>=0.10.1'
 require 'sinatra'
 require 'haml'
-require 'twitter'
+gem 'oauth'
+require 'oauth/consumer'
+require 'pp'
+# require 'twitter'
 
 module Projectname
-  class Application < Sinatra::Application
+  class Application < Sinatra::Application                         
 
     set :site_root, '/'
     set :haml, {:format => :html4}  # default Haml format is :xhtml
@@ -25,9 +28,30 @@ module Projectname
       options.site_root + "#{page}"
     end
 
+    before do
+      @consumer = OAuth::Consumer.new "sbZC4BebM68TyBoPZeNw", "jFT3kbruIFki4zryFjrnZvMZx7S2Wz3Fdi1drYOjWk", {:site=>"http://twitter.com"}
+      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
+      
+      pp "before: "
+      pp  @request_token
+    end
+
     get '/' do
+      
+      
       haml :index
     end
+    get '/auth' do
+      
+      pp"auth: "
+      pp @request_token
+      
+      @access_token = @request_token.get_access_token(:oauth_verifier =>params[:oauth_verifier])
+
+ 
+      haml :auth
+    end
+    
     get '/about' do
       haml :about
     end
