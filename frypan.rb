@@ -79,5 +79,9 @@ module Projectname
       haml :followers
     end
 
+    get '/email' do
+      haml :email, :layout => false
+    end
+
   end
 end
