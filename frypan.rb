@@ -32,19 +32,17 @@ module Projectname
       @consumer = OAuth::Consumer.new "sbZC4BebM68TyBoPZeNw", "jFT3kbruIFki4zryFjrnZvMZx7S2Wz3Fdi1drYOjWk", {:site=>"http://twitter.com"}
       @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
       
-      pp "before: "
-      pp  @request_token
+      session[:request_token] = @request_token.token
+      session[:request_token_secret] = @request_token.secret
+      
     end
 
     get '/' do
-      
-      
       haml :index
     end
+    
     get '/auth' do
-      
-      pp"auth: "
-      pp @request_token
+      @request_token = OAuth::RequestToken.new(@consumer, session[:request_token], session[:request_token_secret])
       
       @access_token = @request_token.get_access_token(:oauth_verifier =>params[:oauth_verifier])
 
