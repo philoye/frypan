@@ -28,34 +28,31 @@ module Projectname
     def path_to_page(page)
       options.site_root + "#{page}"
     end
+    def do_oauth_dance
+      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
+      session[:request_token] = @request_token.token
+      session[:request_token_secret] = @request_token.secret
+    end
 
     before do
       @consumer = OAuth::Consumer.new "sbZC4BebM68TyBoPZeNw", "jFT3kbruIFki4zryFjrnZvMZx7S2Wz3Fdi1drYOjWk", {:site=>"http://twitter.com"}
     end
 
     get '/' do
-      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
-      session[:request_token] = @request_token.token
-      session[:request_token_secret] = @request_token.secret
-      
+      do_oauth_dance
       haml :index
     end
-    
+    get '/get-started' do
+      do_oauth_dance
+      haml :getstarted
+    end
     get '/auth' do
       @access_token = OAuth::RequestToken.new(@consumer, session[:request_token], session[:request_token_secret]).get_access_token(:oauth_verifier =>params[:oauth_verifier])
- 
       haml :auth
     end
     
     get '/about' do
       haml :about
-    end
-
-    get '/get-started' do
-      haml :getstarted
-    end
-    get '/sign-in-with-twitter' do
-      redirect '/oauth-mock/authenticate.html?oauth_token=AILKva982137kasdfasdf98asdf9a7sdfasdf87ads'
     end
     get '/signup' do
       haml :signup

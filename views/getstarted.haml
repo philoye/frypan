@@ -9,7 +9,8 @@
   
   %li Then each day, you'll get an email if you have new followers. 
 
-%a{:href => path_to_page("sign-in-with-twitter")}
-  %img{:src => path_to_image("Sign-in-with-Twitter-darker.png") }
+  %a{:href => @request_token.authorize_url}
+    %img{:src => path_to_image("Sign-in-with-Twitter-darker.png") }
+
 %p.small
   We will don't ask for nor want your Twitter username/password. Be suspicious of anyone who does.
