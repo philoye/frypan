@@ -8,7 +8,8 @@ require 'pp'
 
 module Projectname
   class Application < Sinatra::Application                         
-
+    
+    enable :sessions
     set :site_root, '/'
     set :haml, {:format => :html4}  # default Haml format is :xhtml
 
@@ -30,22 +31,18 @@ module Projectname
 
     before do
       @consumer = OAuth::Consumer.new "sbZC4BebM68TyBoPZeNw", "jFT3kbruIFki4zryFjrnZvMZx7S2Wz3Fdi1drYOjWk", {:site=>"http://twitter.com"}
-      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
-      
-      session[:request_token] = @request_token.token
-      session[:request_token_secret] = @request_token.secret
-      
     end
 
     get '/' do
+      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
+      session[:request_token] = @request_token.token
+      session[:request_token_secret] = @request_token.secret
+      
       haml :index
     end
     
     get '/auth' do
-      @request_token = OAuth::RequestToken.new(@consumer, session[:request_token], session[:request_token_secret])
-      
-      @access_token = @request_token.get_access_token(:oauth_verifier =>params[:oauth_verifier])
-
+      @access_token = OAuth::RequestToken.new(@consumer, session[:request_token], session[:request_token_secret]).get_access_token(:oauth_verifier =>params[:oauth_verifier])
  
       haml :auth
     end
