@@ -1,7 +1,15 @@
-%h2 Sign-up for Frypan
-%p You're most of the way there @philoye. 
+- if @access_token.params[:user_id]
+  %h2 Sign-up for Frypan
+  %p 
+    Hello
+    %strong= "@" + @access_token.params[:screen_name]
+- else
+  %p Something went badly wrong. Hold me?
 
-%form{:action => "/thank-you", :method => "get"}
+%form{:action => "/create", :method => "post"}
+  - if @user.error
+    %p.errors
+      = @user.error
   %ul
     %li
       %h3
@@ -9,7 +17,7 @@
     
     %li
       %label Email
-      %input{:type => "text", :class => "text"}
+      %input{:type => "text", :class => "text", :name => "user[email]", :value => @user.email}
       %span We won't sell it, promise. But we need it.
 
     %li
@@ -18,18 +26,18 @@
       
     %li
       %label Password
-      %input{:type => "password", :class => "text"}
-
+      %input{:type => "password", :class => "text", :name => "user[password]", :value => @user.password}
+    
     %li
       %span.quiet — or — 
 
-      
     %li
       %label Open ID
-      %input{:type => "text", :class => "text"}
+      %input{:type => "text", :class => "text", :name => "user[openid]", :value => @user.openid}
       %span 
         %a{:href=>"http://openid.net/what/"} What is this?
 
     %li
       %label
-      %input{:type => "submit", :value => "Finish", :class => "button"}
+      %input{:name => "submit", :type => "submit", :value => "Finish", :class => "button"}
+      

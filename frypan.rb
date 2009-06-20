@@ -6,6 +6,7 @@ require 'oauth/consumer'
 require 'pp'
 require 'active_record'
 require 'config/db'
+require 'models/users'
 
 module Frypan
   class Application < Sinatra::Application                         
@@ -30,7 +31,7 @@ module Frypan
       options.site_root + "#{page}"
     end
     def do_oauth_dance
-      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/auth")
+      @request_token = @consumer.get_request_token(:oauth_callback => "http://frypan.local/signup")
       session[:request_token] = @request_token.token
       session[:request_token_secret] = @request_token.secret
     end
@@ -47,16 +48,27 @@ module Frypan
       do_oauth_dance
       haml :getstarted
     end
-    get '/auth' do
+    get '/signup' do
       @access_token = OAuth::RequestToken.new(@consumer, session[:request_token], session[:request_token_secret]).get_access_token(:oauth_verifier =>params[:oauth_verifier])
-      haml :auth
+      @user = User.new
+      haml :signup
+    end
+    post '/create' do
+      @user = User.new(params[:user])
+      @user.twitter_screen_name = session[:access_token][:screen_name]
+      @user.twitter_user_id = session[:access_token][:user_id]
+      @user.twitter_oauth_token = session[:access_token][:oauth_token]
+      @user.twitter_oauth_token_secret = session[:access_token][:oauth_token_secret]
+
+      if @user.valid? && @user.save!
+        redirect "/thank-you"
+      else
+        haml :signup
+      end
     end
     
     get '/about' do
       haml :about
-    end
-    get '/signup' do
-      haml :signup
     end
     get '/thank-you' do
       haml :signup_confirmation
