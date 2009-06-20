@@ -4,6 +4,7 @@ require 'haml'
 gem 'oauth'
 require 'oauth/consumer'
 require 'pp'
+require 'active_record'
 require 'config/db'
 
 module Frypan
