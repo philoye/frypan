@@ -4,9 +4,9 @@ require 'haml'
 gem 'oauth'
 require 'oauth/consumer'
 require 'pp'
-# require 'twitter'
+require 'config/db'
 
-module Projectname
+module Frypan
   class Application < Sinatra::Application                         
     
     enable :sessions

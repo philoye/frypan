@@ -7,5 +7,5 @@ require File.join(File.dirname(__FILE__), 'frypan.rb')
 set :environment, :development
  
 map "/" do
-  run Projectname::Application
+  run Frypan::Application
 end
